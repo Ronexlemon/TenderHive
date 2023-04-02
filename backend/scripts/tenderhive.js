@@ -1,11 +1,11 @@
 const {ethers} = require("hardhat");
-//1. SupplyShereContractAddress 0x1D7478635b1e6C0001432a5a7e20Fd273273Aa32
+//1. SupplyShereContractAddress 0xE50A2E68f31e899D6e794314823cD2ac126BD764
 
 async function main(){
     //get the contract
     const TenderSupplyShereContract = await ethers.getContractFactory("Bider");
     //deploy the contract
-    const TenderSupplyShereContractDeploy = await TenderSupplyShereContract.deploy();
+    const TenderSupplyShereContractDeploy = await TenderSupplyShereContract.deploy({ gasLimit: 8000000 });
     //await deployment
     await TenderSupplyShereContractDeploy.deployed();
     //console the address
