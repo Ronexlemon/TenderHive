@@ -7,10 +7,10 @@ const Footer = () => {
       <div className="flex flex-col w-full sm:w-[50%]">
         <div className="flex items-center mb-2">
           <img src={logo} alt="tender-filecoin-logo" />
-          <h3 className="font-bold text-xl ml-2"> SupplySphere</h3>
+          <h3 className="font-bold text-xl ml-2">TenderHive</h3>
         </div>
         <p className="text-sm ">
-        SupplySphere is a blockchain based application that makes it easy to
+        TenderHive is a blockchain based application that makes it easy to
           advertise and apply for tenders with the highest level of
           transparency.
         </p>
@@ -41,14 +41,14 @@ const Footer = () => {
         </div>
         <div className="my-2">
           <h3 className="font-bold mb-3">Contact Us</h3>
-          <h4 className="text-sm my-1 text-[#ffffffa1]">+254 743 312 265</h4>
-          <h4 className="text-sm my-1 text-[#ffffffa1]"> SupplySphere@gmail.com</h4>
+          <h4 className="text-sm my-1 text-[#ffffffa1]">+254 701 707 772</h4>
+          <h4 className="text-sm my-1 text-[#ffffffa1]"> TenderHive@gmail.com</h4>
         </div>
       </div>
     </div>
     <hr />
     <footer className="text-white">
-      &copy;Copyright 2023, All Rights Reserved by  SupplySphere
+      &copy;Copyright 2023, All Rights Reserved by  TenderHive
     </footer>
     </section>
   );

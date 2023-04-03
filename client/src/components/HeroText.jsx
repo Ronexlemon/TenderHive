@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import appExample from "../assets/svg/app_example2.svg";
+import appExample from "../assets/svg/landingimage.svg";
 
 const  HeroText = () => {
   return (
@@ -17,7 +17,7 @@ const  HeroText = () => {
           transparency.
         </h3>
         <Link to="/AvailableTenders" className="pb-10">
-          <button className="rounded-sm border bg-gradient-to-r from-[#2B59FF] to-[#BB2BFF] border-none px-10 py-3  my-2">
+          <button className="rounded-sm border  bg-gradient-to-r from-[#b8d94b] to-[#BB2BFF] border-none px-10 py-3  my-2">
             Get Started
           </button>
         </Link>
