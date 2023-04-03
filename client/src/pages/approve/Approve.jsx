@@ -17,12 +17,12 @@ function Approve() {
   const getProviderOrSigner = async (needSigner = false) => {
     const provider = await Web3ModalRef.current.connect();
     const web3Provider = new providers.Web3Provider(provider);
-    // check if network is polygon hermez
+    // check if network is Hedera 
     const { chainId } = await web3Provider.getNetwork();
    
-    if (chainId !== 1442) {
-      window.alert("Change network to polygon zkevm");
-      throw new Error("Change network to polygon zkevm ");
+    if (chainId !== 296) {
+      window.alert("Change network to Hedera Testnet");
+      throw new Error("Change network to Hedera Testnet ");
     }
     if (needSigner) {
       const signer = web3Provider.getSigner();

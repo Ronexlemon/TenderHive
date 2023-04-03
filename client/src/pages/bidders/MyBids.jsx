@@ -4,16 +4,17 @@ import Web3Modal from "web3modal";
 import { providers, Contract } from "ethers";
 import { BiderAbi } from "../../abi/bidercontract_abi";
 import DisplayBidsTenders from "./DisplayMyBids"
+import { TenderHiveContractAddress } from "../../contractAddress/address";
 
 
 const MyBidsTenders = () => {
   const [Tenders, setTenders] = useState([]);
-  const TenderOwnerAddress = "0x1D7478635b1e6C0001432a5a7e20Fd273273Aa32";
+  
   const [tenderslength, setLength] = useState(0);
   const [userAccount, setUserAccount] = useState(null);
   const web3ModalRef = useRef();
   const Approve = () => {
-    alert("yooh");
+    alert("approved");
   };
   //Todo get all information
   const getAllTenders = useCallback(async () => {
@@ -21,7 +22,7 @@ const MyBidsTenders = () => {
       let _tenders = [];
       const provider = await getProviderOrSigner();
       const TenderContracts = new Contract(
-        TenderOwnerAddress,
+        TenderHiveContractAddress,
         BiderAbi,
         provider
       );
@@ -76,11 +77,11 @@ const MyBidsTenders = () => {
     const accounts = web3.currentProvider.selectedAddress;
    
     setUserAccount(accounts);
-    //check if user is connected to polygon hermez
+    //check if user is connected to hedera network
     const { chainId } = await web3Provider.getNetwork();
-    if (Number(chainId) !== 1442) {
-      window.alert("Change network to polygon zkevm");
-      throw new Error("Change network To polygon zkevm");
+    if (Number(chainId) !== 296) {
+      window.alert("Change network to Hedera Testnet");
+      throw new Error("Change network To Hedera Testnet");
     }
     const signer = web3Provider.getSigner();
     // const accounts = await signer.getAddress();
@@ -97,7 +98,7 @@ const MyBidsTenders = () => {
   };
   useEffect(() => {
     web3ModalRef.current = new Web3Modal({
-      network:"PolygonzkEVM",
+      network:"hedera",
       providerOptions: {},
       disableInjectedProvider: false,
       cacheProvider: false,
