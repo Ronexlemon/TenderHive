@@ -12,6 +12,7 @@ import Web3 from "web3";
 
 
 
+
 const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
   <TooltipComponent content={title} position="BottomCenter">
     <button
@@ -41,7 +42,7 @@ const Navbar = () => {
   const [walletconnect, setWalletConnect] = useState(false);
   const [BidTenders, setBidTenders] = useState([]);
   const [index, setIndex] = useState();
-  const ContractBiderAddress = "0x1D7478635b1e6C0001432a5a7e20Fd273273Aa32"; 
+  
   const Web3ModalRef = useRef();
   //provide sugner or provider
   const connectWallet = async (needSigner = false) => {
@@ -53,9 +54,9 @@ const Navbar = () => {
      const accounts = await signer.getAddress();
     //setUserAccount(accounts);
    
-    if (chainId !== 1442) {
-      window.alert("Change network to polygon zkevm");
-      throw new Error("Change network to polygon zkevm ");
+    if (chainId !== 296) {
+      window.alert("Change network to Hedera Network");
+      throw new Error("Change network Hedera Network ");
      
     }
     setWalletConnect(true)
@@ -67,7 +68,7 @@ const Navbar = () => {
   };
   useEffect(() => {
     Web3ModalRef.current = new Web3Modal({
-      network: "PolygonzkEVM",
+      network: "hedera",
       providerOptions: {},
       disableInjectedProvider: false,
       cacheProvider: false,
