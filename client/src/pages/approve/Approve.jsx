@@ -4,13 +4,14 @@ import Web3Modal from "web3modal";
 import { useRef, useEffect, useState,useCallback } from "react";
 import { providers, Contract } from "ethers";
 import DisplayBids from "./displayBids"
+import { TenderHiveContractAddress } from "../../contractAddress/address";
 
 
 function Approve() {
   const [walletconnect, setWalletConnect] = useState(false);
   const [BidTenders, setBidTenders] = useState([]);
   const [index, setIndex] = useState();
-  const ContractBiderAddress = "0x1D7478635b1e6C0001432a5a7e20Fd273273Aa32"; 
+ 
   const Web3ModalRef = useRef();
   //provide sgner or provider
   const getProviderOrSigner = async (needSigner = false) => {
@@ -34,7 +35,7 @@ function Approve() {
       let _bidTenders = [];
     const provider = await getProviderOrSigner();
     const BidersContract = new Contract(
-      ContractBiderAddress,
+      TenderHiveContractAddress,
       BiderAbi,
       provider
     );
@@ -54,7 +55,7 @@ function Approve() {
   const approveTender = async (ids) => {
     const signer = await getProviderOrSigner(true);
 
-    const BiderContract = new Contract(ContractBiderAddress, BiderAbi, signer);
+    const BiderContract = new Contract(TenderHiveContractAddress, BiderAbi, signer);
     const approves = await BiderContract.approveTender(ids);
     // alert(approves);
   };
