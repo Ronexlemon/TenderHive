@@ -7,7 +7,7 @@ const  HeroText = () => {
       <article className=" flex flex-col items-center text-white my-3 h-[400px] md:h-[300px] justify-around">
         <div className="text-5xl font-bold text-center pt-10">
          Openness fosters trust and transparency in{" "}
-          <div className="text-transparent bg-clip-text bg-gradient-to-r from-[#FE873F] to-[#FFC947]">
+          <div className="text-transparent bg-clip-text bg-gradient-to-r from-[#bf5817] to-[#f8b51a]">
             procurement of services
           </div>
         </div>
