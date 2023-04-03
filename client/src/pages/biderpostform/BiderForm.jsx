@@ -7,19 +7,21 @@ import { SiBitcoincash } from "react-icons/si";
 import { useNavigate } from "react-router-dom";
 import Web3 from "../../web3-storage/web3";
 import { Web3Storage, getFilesFromPath } from "web3.storage";
+import { TenderHiveContractAddress } from "../../contractAddress/address";
+
 
 import {providers, Contract } from "ethers";
+let token = import.meta.env.VITE_token;
 
 const BiderForm = () => {
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDJFRjRiMTdhYzY1MjgzNEYxQTBkMTQxNTUwOTRlYTdiYTMzRWEyOWIiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NzcyMzA1NTE0NTMsIm5hbWUiOiJ0ZW5kZXJzcGFjZSJ9.CwbHkp79KAwCjQTpRmlRJWSWKa10VBSJLLv4eMrmVJs";
+  
   const navigate = useNavigate();
   const { state } = useLocation();
   const location = useLocation();
   const documenturl = location.state?.documenturl;
 
   const { id } = state; // Read values passed on state
-  const ContractBiderAddress = "0x1D7478635b1e6C0001432a5a7e20Fd273273Aa32";
+  
   const Web3ModalRef = useRef();
   const [biderCompanyName, setBiderCompanyName] = useState("");
   const [biderCompanyRegistrationNumber, setBiderCompanyRegistrationNumber] =
@@ -36,9 +38,9 @@ const BiderForm = () => {
     // check if network is polygon hermez
     const { chainId } = await web3Provider.getNetwork();
     
-    if (chainId !== 1442) {
-      window.alert("Change network to polygon zkevm");
-      throw new Error("Change network to polygon zkevm");
+    if (chainId !== 296) {
+      window.alert("Change network to hedera Testnet");
+      throw new Error("Change network to hedera Testnet");
     }
     if (needSigner) {
       const signer = web3Provider.getSigner();
@@ -49,7 +51,7 @@ const BiderForm = () => {
   //call the metamask on page reload
   useEffect(() => {
     Web3ModalRef.current = new Web3Modal({
-      network: "PolygonzkEVM",
+      network: "hedera",
       providerOptions: {},
       disableInjectedProvider: false,
       cacheProvider: false,
@@ -71,7 +73,7 @@ const BiderForm = () => {
     try {
       const signer = await getProviderOrSigner(true);
       const BiderContract = new Contract(
-        ContractBiderAddress,
+        TenderHiveContractAddress,
         BiderAbi,
         signer
       );

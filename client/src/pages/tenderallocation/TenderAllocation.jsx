@@ -5,24 +5,25 @@ import { useRef, useEffect, useState,useCallback } from "react";
 
 import { providers, Contract } from "ethers";
 import DisplayTenderAllocation from "./DisplayTenderAllocation";
+import { TenderHiveContractAddress } from "../../contractAddress/address";
 
 
 function TenderAllocation() {
   const [walletconnect, setWalletConnect] = useState(false);
   const [BidTenders, setBidTenders] = useState([]);
   const [index, setIndex] = useState();
-  const ContractBiderAddress = "0x1D7478635b1e6C0001432a5a7e20Fd273273Aa32";
+  
   const Web3ModalRef = useRef();
   //provide sgner or provider
   const getProviderOrSigner = async (needSigner = false) => {
     const provider = await Web3ModalRef.current.connect();
     const web3Provider = new providers.Web3Provider(provider);
-    // check if network is polygon hermez
+    // check if network is Hedera
     const { chainId } = await web3Provider.getNetwork();
     
-    if (chainId !== 1442) {
-      window.alert("Change network to polygon zkevm");
-      throw new Error("Change network to polygon zkevm ");
+    if (chainId !== 296) {
+      window.alert("Change network to hedera Testnet");
+      throw new Error("Change network to hedera Testnet ");
     }
     if (needSigner) {
       const signer = web3Provider.getSigner();
@@ -35,7 +36,7 @@ function TenderAllocation() {
       let _bidTenders = [];
       const provider = await getProviderOrSigner();
       const BidersContract = new Contract(
-        ContractBiderAddress,
+      TenderHiveContractAddress,
         BiderAbi,
         provider
       );
@@ -55,7 +56,7 @@ function TenderAllocation() {
   const approveTender = async (ids) => {
     const signer = await getProviderOrSigner(true);
 
-    const BiderContract = new Contract(ContractBiderAddress, BiderAbi, signer);
+    const BiderContract = new Contract(TenderHiveContractAddress, BiderAbi, signer);
     const approves = await BiderContract.approveTender(ids);
     // alert(approves);
   };
@@ -66,7 +67,7 @@ function TenderAllocation() {
   // },[])
   useEffect(() => {
     Web3ModalRef.current = new Web3Modal({
-      network: "PolygonzkEVM",
+      network: "hedera",
       providerOptions: {},
       disableInjectedProvider: false,
       cacheProvider: false,

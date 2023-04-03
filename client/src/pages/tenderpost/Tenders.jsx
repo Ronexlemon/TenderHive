@@ -7,6 +7,7 @@ import { providers, Contract } from "ethers";
 import { BiderAbi } from "../../abi/bidercontract_abi";
 
 import { useNavigate } from "react-router-dom";
+import { TenderHiveContractAddress } from "../../contractAddress/address";
 
 
 const Tenders = () => {
@@ -15,7 +16,7 @@ const Tenders = () => {
   let btnapprove = useRef(null);
   //let Tenders =[];
   const [Tenders, setTenders] = useState([]);
-  const TenderOwnerAddress = "0x1D7478635b1e6C0001432a5a7e20Fd273273Aa32";
+  
   const [tenderslength, setLength] = useState(0);
   const web3ModalRef = useRef();
   const [walletconnect, setWalletConnect] = useState(false);
@@ -31,7 +32,7 @@ const Tenders = () => {
 
     try {
       const signer = await getProviderOrSigner(true);
-      const tenderContract = new Contract(TenderOwnerAddress, BiderAbi, signer);
+      const tenderContract = new Contract(TenderHiveContractAddress, BiderAbi, signer);
       const results = await tenderContract.writeTenderDetails(...params);
       // .send({from: address})
       alert("add results successful");
@@ -55,11 +56,11 @@ const Tenders = () => {
     //connect metamask
     const provider = await web3ModalRef.current.connect();
     const web3Provider = new providers.Web3Provider(provider);
-    //check if user is connected to polygon hermez
+    //check if user is connected to hedera
     const { chainId } = await web3Provider.getNetwork();
-    if (chainId !== 1442) {
-      window.alert("Change network to Polygon zkevm");
-      throw new Error("Change network To Polygon zkevm ");
+    if (chainId !== 296) {
+      window.alert("Change network to hedera Testnet");
+      throw new Error("Change network To hedera Testnet ");
     }
     
     //if need signer for transactions
@@ -140,7 +141,7 @@ const Tenders = () => {
   //load content on reload
   useEffect(() => {
     web3ModalRef.current = new Web3Modal({
-      network: "PolygonzkEVM",
+      network: "hedera",
       providerOptions: {},
       disableInjectedProvider: false,
       cacheProvider: false,

@@ -4,23 +4,24 @@ import Web3Modal from "web3modal";
 import { useRef, useEffect, useState,useCallback } from "react";
 import { providers, Contract } from "ethers";
 import DisplayTenderStatus from "./DisplayTenderStatus";
+import { TenderHiveContractAddress } from "../../contractAddress/address";
 
 
 function TenderStatus() {
   const [walletconnect, setWalletConnect] = useState(false);
   const [BidTenders, setBidTenders] = useState([]);
   const [index, setIndex] = useState();
-  const ContractBiderAddress = "0x1D7478635b1e6C0001432a5a7e20Fd273273Aa32";
+  
   const Web3ModalRef = useRef();
   //provide sugner or provider
   const getProviderOrSigner = async (needSigner = false) => {
     const provider = await Web3ModalRef.current.connect();
     const web3Provider = new providers.Web3Provider(provider);
-    // check if network is polyon hermez
+    // check if network is hedera
     const { chainId } = await web3Provider.getNetwork();
-    if (chainId !== 1442) {
-      window.alert("Change network to Polygon zkevm");
-      throw new Error("Change network To Polygon zkevm");
+    if (chainId !== 296) {
+      window.alert("Change network to hedera Testnet");
+      throw new Error("Change network To hedera Testnet");
     }
 
     if (needSigner) {
@@ -36,7 +37,7 @@ function TenderStatus() {
        let _bidTenders = [];
        const provider = await getProviderOrSigner();
        const BidersContract = new Contract(
-         ContractBiderAddress,
+         TenderHiveContractAddress,
          BiderAbi,
          provider
        );
@@ -68,7 +69,7 @@ function TenderStatus() {
   // },[])
   useEffect(() => {
     Web3ModalRef.current = new Web3Modal({
-      network: "PolygonzkEVM",
+      network: "hedera",
       providerOptions: {},
       disableInjectedProvider: false,
       cacheProvider: false,
