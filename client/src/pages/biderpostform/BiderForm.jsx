@@ -11,9 +11,11 @@ import { TenderHiveContractAddress } from "../../contractAddress/address";
 
 
 import {providers, Contract } from "ethers";
-let token = import.meta.env.VITE_token;
+//let token = import.meta.env.VITE_token;
 
 const BiderForm = () => {
+  const token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDJFRjRiMTdhYzY1MjgzNEYxQTBkMTQxNTUwOTRlYTdiYTMzRWEyOWIiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NzcyMzA1NTE0NTMsIm5hbWUiOiJ0ZW5kZXJzcGFjZSJ9.CwbHkp79KAwCjQTpRmlRJWSWKa10VBSJLLv4eMrmVJs";
   
   const navigate = useNavigate();
   const { state } = useLocation();
